@@ -1,0 +1,32 @@
+.Header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 30px 0;
+  flex-direction: column;
+  border-bottom: 2px solid #eeeeee;
+}
+.Header .container {
+    font-family: 'Open Sans', sans-serif;
+}
+.Header .container h1 {
+    position: relative;
+    margin-bottom: 0px;
+    font-weight: normal;
+    font-size: 28px;
+}
+.Header .container p {
+    padding-top: 0;
+    margin-top: 0;
+    font-size: 13px;
+    color: #717180;
+}
+
+
+@media (max-width:800px) {
+    .Header .container {
+        width: 95%;
+    }
+}

@@ -1,0 +1,32 @@
+.SelectForm {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-family: "Open Sans", sans-serif;
+  margin-bottom: 20px;
+  width:100%;
+}
+
+.SelectForm select {
+  width: calc(100%);
+  padding: 10px;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 4px;
+  outline-color: #b170fc;
+}
+.SelectForm select option {
+  padding: 10px;
+  font-size: 14px;
+}
+
+.SelectForm label {
+  margin-bottom: 10px;
+  font-family: "Poppins";
+  color: #717180;
+  font-size: 14px;
+}
+
+.SelectForm span {
+  font-family: "Poppins";
+  margin-bottom: 10px;
+}
