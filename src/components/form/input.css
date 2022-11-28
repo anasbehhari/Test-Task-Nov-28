@@ -10,6 +10,8 @@
   display: flex;
   flex-direction: row-reverse;
   width: fit-content;
+  align-items: center;
+
 }
 .Inputform input {
   width: calc(100% - 21px);
@@ -23,8 +25,7 @@
 }
 
 .Inputform label {
-  margin-bottom: 10px;
-  font-family: "Poppins";
+          font-family: "Poppins";
   color: #717180;
   font-size: 14px;
 }

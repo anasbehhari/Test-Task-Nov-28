@@ -15,12 +15,11 @@
   outline-color: #b170fc;
 }
 .SelectForm select option {
-  padding: 10px;
+  padding: 5px ;
   font-size: 14px;
 }
 
 .SelectForm label {
-  margin-bottom: 10px;
   font-family: "Poppins";
   color: #717180;
   font-size: 14px;
