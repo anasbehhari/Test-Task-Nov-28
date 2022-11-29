@@ -11,7 +11,6 @@
   flex-direction: row-reverse;
   width: fit-content;
   align-items: center;
-
 }
 .Inputform input {
   width: calc(100% - 21px);
@@ -19,13 +18,20 @@
   border: 1px solid rgb(204, 204, 204);
   border-radius: 4px;
   outline-color: #b170fc;
-    }
+}
+.Inputform small {
+  color: red;
+  font-family: "poppins";
+  display: none;
+  padding-top: 5px;
+  font-size: 12px;
+}
 .Inputform.checkbox input {
   width: fit-content;
 }
 
 .Inputform label {
-          font-family: "Poppins";
+  font-family: "Poppins";
   color: #717180;
   font-size: 14px;
 }
@@ -36,4 +42,18 @@
 .Inputform span {
   font-family: "Poppins";
   margin-bottom: 10px;
+}
+
+.Inputform input:invalid[focused="true"] ~ small {
+  display: block;
+}
+.Inputform input:invalid[focused="true"] {
+  border-color: red;
+}
+
+.Inputform.checkbox small{
+  position: absolute;
+  left: 100%;
+  width: fit-content;
+  top: -15%;
 }

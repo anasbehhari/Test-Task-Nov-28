@@ -23,14 +23,16 @@ const Form = () => {
   ];
   const handlesubmit = (e) => {
     e.preventDefault();
-    console.log(e);
+    // let values = new FormData(e.target);
+    // let data  = Object.fromEntries(values.entries())
+    // console.log(data);
   };
   return (
     <form onSubmit={handlesubmit}>
-      <Input  className="text"label="1. username" name="name" type="text" placeholder="Enter a valid username." />
-      <Select label="2. Sectors" name="sectors" placeholder="pick the Sectors you are currently involved in." multiple={true} options={options}/>
-      <Input className="checkbox" label=" Agree to terms" name="terms" type="checkbox"/>
-      <button >Send </button>
+      <Input  className="text"label="1. username" name="name" type="text" placeholder="Enter a valid username." error="*field required" />
+      <Select label="2. Sectors" name="sectors" placeholder="pick the Sectors you are currently involved in." multiple={true} options={options} error="*field required"/>
+      <Input className="checkbox" label="Agree to terms" name="terms" type="checkbox" error="*"/>
+      <button>Send</button>
     </form>
   );
 };

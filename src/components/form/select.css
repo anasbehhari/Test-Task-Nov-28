@@ -29,3 +29,17 @@
   font-family: "Poppins";
   margin-bottom: 10px;
 }
+.SelectForm small {
+  color: red;
+  font-family: "poppins";
+  display: none;
+  padding-top: 5px;
+  font-size: 12px;
+}
+
+.SelectForm select:invalid[focused="true"]  ~ small {
+  display: block;
+}
+.SelectForm select:invalid[focused="true"]   {
+  border-color: red;
+}
