@@ -1,0 +1,82 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import "./form.css";
+import Input from "./form/Input";
+import Select from "./form/Select";
+
+const Form = () => {
+ 
+
+  // var [Data, setData] = useState();
+
+  // const handlesubmit = (e) => {
+  //   e.preventDefault();
+  //   let values = new FormData(e.target);
+  //   let data = Object.fromEntries(values.entries());
+  //   if (data.name && data.terms == "on") {
+  //     let selected = e.target[1].selectedOptions;
+  //     let selectedSectors = [];
+  //     for (let i = 0; i < selected.length; i++) {
+  //       const el = selected[i];
+  //       selectedSectors.push({ id: el.value, name: el.textContent });
+  //     }
+  //     data.sectors = selectedSectors;
+  //     //init state
+  //     setData(data);
+  //     //store to localstorage
+
+  //     localStorage.setItem("data", JSON.stringify(Data));
+
+  //     //success push to database
+  //   } else {
+  //     //error
+  //   }
+  // };
+  var [options, setOptions] = useState();
+  useEffect(() => {
+    axios
+      .get("http://localhost:2001/api/sectors")
+      .then((res) => {
+        const data = res.data;
+
+        setOptions(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      }); 
+  });
+
+  return (
+    // <form onSubmit={handlesubmit}>
+    //   <Input
+    //     className="text"
+    //     label="1. username"
+    //     name="name"
+    //     type="text"
+    //     placeholder="Enter a valid username."
+    //     error="*field required"
+    //   />
+    //   <Select
+    //     label="2. Sectors"
+    //     name="sectors"
+    //     placeholder="pick the Sectors you are currently involved in."
+    //     multiple={true}
+    //     options={[]}
+    //     error="*field required"
+    //   />
+    //   <Input
+    //     className="checkbox"
+    //     label="Agree to terms"
+    //     name="terms"
+    //     type="checkbox"
+    //     error="*"
+    //   />
+    //   <button>Send</button>
+
+    // </form>
+
+   
+  );
+};
+
+export default Form;
