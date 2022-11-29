@@ -3,8 +3,11 @@ import axios from "../api/axios";
 import "./form.css";
 import Input from "./form/Input";
 import Select from "./form/Select";
+import { useNavigate } from "react-router-dom";
+import Validate from "./Validate";
 
 const Form = () => {
+  const navigate = useNavigate();
   var [Data, setData] = useState();
   const handlesubmit = (e) => {
     e.preventDefault();
@@ -26,8 +29,6 @@ const Form = () => {
         setData(data);
 
         //store to localstorage
-        localStorage.setItem("data", JSON.stringify(data));
-        localStorage.setItem("Logged", true);
 
         //success push to database
         //request to API for storing data after Rechecking all data.
@@ -40,10 +41,13 @@ const Form = () => {
           },
           data,
         };
-        axios(options)
-        .then(response => {
-          if(response.status==200) {
-            //redirect to next component 
+        axios(options).then((response) => {
+          if (response.status == 200) {
+            //redirect to next component
+            localStorage.setItem("data", JSON.stringify(data));
+            console.log(response.data);
+            localStorage.setItem("Logged", response.data._id);
+            navigate("/validate");
           }
         });
       } else {
@@ -53,10 +57,13 @@ const Form = () => {
     } else {
       //someone played with the HTML element fire a error and load the page
       console.log("jm3 krk2");
-
     }
   };
 
+  // if (localStorage.getItem("Logged")) {
+  //   return <Validate />
+  // }
+  // else {
   return (
     <form onSubmit={handlesubmit}>
       <Input
@@ -83,6 +90,7 @@ const Form = () => {
       <button>Send</button>
     </form>
   );
+  // }
 };
 
 export default Form;

@@ -5,11 +5,7 @@ import Form from "./components/Form";
 import Validate from "./components/Validate";
 import Header from "./components/Header";
 
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
+
 function App() {
   return (
     <div className="App">
