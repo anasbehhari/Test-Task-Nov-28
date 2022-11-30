@@ -8,33 +8,36 @@ const Validate = () => {
   //check if user already logged and if it exist too!!
   var [logged, setLogged] = useState(localStorage.getItem("Logged"));
   var [edited, setEdited] = useState("");
-
+  const data = JSON.parse(localStorage.getItem("data"));
   const navigate = useNavigate();
 
-  if (logged) {
+  //check if session is staring (data available and user already submitted data from previous step)
+  if (logged && data) {
+
     //CHECK IF USER REAL FROM DATABASE
-    // useEffect(() => {
-    //   const options = {
-    //     url: "/api/user/check",
-    //     method: "POST",
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json;charset=UTF-8",
-    //     },
-    //     data: { _id: logged },
-    //   };
-    //   axios(options).then((res) => {
-    //     if (res.status == 200 && res.data.success) {
-    //       setLogged(true);
-    //     } else {
-    //       setLogged(false);
-    //     }
-    //   });
-    // }, []);
+    useEffect(() => {
+      const options = {
+        url: "/api/user/check",
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+        data: { _id: logged },
+      };
+      axios(options).then((res) => {
+        if (res.status == 200 && res.data.success) {
+          setLogged(true);
+        } else {
+          localStorage.clear();
+          navigate("/");
+          setLogged(false);
+        }
+      });
+    }, []);
 
-    //GET user data from localstorage
-
-    let data = JSON.parse(localStorage.getItem("data"));
+    //GET Selected sectors to display 
+    
     let selectedSectors = data.sectors;
     let selectedIds = [];
     for (let index = 0; index < selectedSectors.length; index++) {
@@ -43,7 +46,6 @@ const Validate = () => {
     }
 
     //handle sumbit events
-
     const HandleDelete = (e) => {
       e.preventDefault();
       //delete user request
@@ -97,7 +99,7 @@ const Validate = () => {
         }).then((res) => {
           if (res.status == 200 && res.data.success) {
             localStorage.setItem("data", JSON.stringify(res.data.updated));
-            form[0].value=name;
+            form[0].value = name;
             var today = new Date();
             var time =
               today.getHours() +
