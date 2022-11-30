@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "../api/axios";
-import "./form.css";
+import "./css/form.css";
 import Input from "./form/Input";
 import Select from "./form/Select";
 import { useNavigate } from "react-router-dom";
