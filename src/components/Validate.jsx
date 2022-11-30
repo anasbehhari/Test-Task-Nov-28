@@ -108,7 +108,7 @@ const Validate = () => {
               ":" +
               today.getSeconds();
 
-            setEdited("edited at " + time);
+            setEdited("edit " + time);
           } else {
             console.log("something went wrong");
           }
@@ -137,7 +137,7 @@ const Validate = () => {
           error="*field required"
           
         />
-        <div className={"message " + edited}>{edited}</div>
+        <div className={"message " + edited}>Last {edited}</div>
         <div className="con">
           <button onClick={HandleEdit}>Edit & save</button>
           <button onClick={HandleDelete}>Delete user</button>
