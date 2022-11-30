@@ -70,7 +70,7 @@ const Validate = () => {
 
     const HandleEdit = (e) => {
       e.preventDefault();
-
+      setEdited("loading.....");
       let form = e.target.parentNode.parentNode;
       let name = form[0].value;
       let selected = form[1].selectedOptions;
