@@ -53,3 +53,19 @@ form h3 {
   font-family: "poppins",sans-serif;
   font-size: 23px;
 }
+
+form .message {
+  font-family: "poppins",sans-serif;
+  background-color: rgba(255, 255, 255, 0.97) !important;
+  color: #2ecc71;
+  border: 1Px solid #2ecc71;
+  border-radius: 4px;
+  padding: 5px 10px;
+  display: none;
+  margin-bottom: 10px;
+  width: fit-content;
+}
+
+form .message.edited {
+  display: block;
+}
