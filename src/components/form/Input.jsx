@@ -9,7 +9,12 @@ const Input  = (props) => {
   return <div className={"Inputform "+props.className}>
       <label> {props.label}</label>
       <span>{props.placeholder}</span>
-      <input type={props.type} name={props.name}  required={true} onBlur={handlefocus} focused={focused.toString()} />
+      {
+      
+      props.type=="checkbox" ? <input  type={props.type} name={props.name}  required={true} onBlur={handlefocus} focused={focused.toString()}  />
+       : <input  type={props.type} name={props.name}  required={true} onBlur={handlefocus} focused={focused.toString()} defaultValue={props.value} />
+      }
+
       <small className="error">{props.error}</small>
   </div>
 }

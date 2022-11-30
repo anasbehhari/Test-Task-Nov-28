@@ -9,6 +9,7 @@ const Select = (props) => {
     setFocused(true);
   };
 
+  var selectedSectors = props.selected;
 
   //init state for loading component
   const [loading, setLoading] = useState(true);
@@ -34,12 +35,12 @@ const Select = (props) => {
       setLoading(false);
     }
   };
-  //firing function for getting data from database 
+  //firing function for getting data from database
   useEffect(() => {
     getOptions();
   }, []);
 
-  //check if data is loaded 
+  //check if data is loaded
   if (loading) return <p> Loading ... </p>;
 
   return (
@@ -53,11 +54,24 @@ const Select = (props) => {
         onBlur={handlefocus}
         focused={focused.toString()}
       >
-        {options.map((option) => (
-          <option data-id={option._id} key={option._id} value={option.name}>
-            {option.name}{" "}
-          </option>
-        ))}
+        {options.map((option) =>
+          props.selected ? (
+            <option
+              data-id={option._id}
+              key={option._id}
+              value={option.name}
+              selected={
+                selectedSectors.indexOf(option._id) !== -1 ? true : false
+              }
+            >
+              {option.name}{" "}
+            </option>
+          ) : (
+            <option data-id={option._id} key={option._id} value={option.name}>
+              {option.name}{" "}
+            </option>
+          )
+        )}
       </select>
       <small className="error">{props.error}</small>
     </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "../api/axios";
 import "./form.css";
 import Input from "./form/Input";
@@ -7,12 +7,39 @@ import { useNavigate } from "react-router-dom";
 import Validate from "./Validate";
 
 const Form = () => {
+  //check if already logged and if the user existes or youre just manuplitaing the states or localstorage
+  var [logged, setLogged] = useState(localStorage.getItem("Logged"));
+
+  useEffect(() => {
+    const options = {
+      url: "/api/user/check",
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      data: { _id: logged },
+    };
+    axios(options).then((res) => {
+      if (res.status == 200 && res.data.success) {
+        setLogged(true);
+      }
+      else {
+        setLogged(false);
+      }
+    });
+  }, []);
+
+  //check END
+
+
   const navigate = useNavigate();
   var [Data, setData] = useState();
   const handlesubmit = (e) => {
     e.preventDefault();
     let values = new FormData(e.target);
     let data = Object.fromEntries(values.entries());
+    console.log(data);
     if (data.name && data.terms == "on") {
       let selected = e.target[1].selectedOptions;
       let selectedSectors = [];
@@ -60,36 +87,38 @@ const Form = () => {
     }
   };
 
-  // if (localStorage.getItem("Logged")) {
-  //   return <Validate />
-  // }
-  // else {
-  return (
-    <form onSubmit={handlesubmit}>
-      <Input
-        className="text"
-        label="1. username"
-        name="name"
-        type="text"
-        placeholder="Enter a valid username."
-        error="*field required"
-      />
-      <Select
-        label="2. Sectors"
-        name="sectors"
-        placeholder="pick the Sectors you are currently involved in."
-        error="*field required"
-      />
-      <Input
-        className="checkbox"
-        label="Agree to terms"
-        name="terms"
-        type="checkbox"
-        error="*"
-      />
-      <button>Send</button>
-    </form>
-  );
+ 
+  if(logged)  {
+    navigate("/validate");
+  }
+  else {
+    return (
+      <form onSubmit={handlesubmit}>
+        <Input
+          className="text"
+          label="1. username"
+          name="name"
+          type="text"
+          placeholder="Enter a valid username."
+          error="*field required"
+        />
+        <Select
+          label="2. Sectors"
+          name="sectors"
+          placeholder="pick the Sectors you are currently involved in."
+          error="*field required"
+        />
+        <Input
+          className="checkbox"
+          label="Agree to terms"
+          name="terms"
+          type="checkbox"
+          error="*"
+        />
+        <button>Send</button>
+      </form>
+    );
+  }
   // }
 };
 
