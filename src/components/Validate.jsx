@@ -75,6 +75,7 @@ const Validate = () => {
       let name = form[0].value;
       let selected = form[1].selectedOptions;
       let selectedSectors = [];
+
       for (let i = 0; i < selected.length; i++) {
         const el = selected[i];
         selectedSectors.push({
@@ -82,7 +83,6 @@ const Validate = () => {
           name: el.textContent,
         });
       }
-
       if (selectedSectors && name) {
         axios({
           url: "/api/user/edit",
@@ -135,7 +135,7 @@ const Validate = () => {
           name="sectors"
           placeholder="Edit your sectors "
           error="*field required"
-          selected={selectedSectors}
+          selected={selectedIds}
         />
         <div className={"message " + edited}>Last {edited}</div>
         <div className="con">
