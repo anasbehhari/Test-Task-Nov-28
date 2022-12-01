@@ -3,6 +3,7 @@ import Input from "./form/Input";
 import axios from "../api/axios";
 import Select from "./form/Select";
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const Validate = () => {
   //check if user already logged and if it exist too!!
@@ -13,7 +14,6 @@ const Validate = () => {
 
   //check if session is staring (data available and user already submitted data from previous step)
   if (logged && data) {
-
     //CHECK IF USER REAL FROM DATABASE
     useEffect(() => {
       const options = {
@@ -36,8 +36,8 @@ const Validate = () => {
       });
     }, []);
 
-    //GET Selected sectors to display 
-    
+    //GET Selected sectors to display
+
     let selectedSectors = data.sectors;
     let selectedIds = [];
     for (let index = 0; index < selectedSectors.length; index++) {
@@ -135,7 +135,6 @@ const Validate = () => {
           name="sectors"
           placeholder="Edit your sectors "
           error="*field required"
-          
         />
         <div className={"message " + edited}>Last {edited}</div>
         <div className="con">
@@ -145,7 +144,14 @@ const Validate = () => {
       </form>
     );
   } else {
-    return <h1>not logged</h1>;
+    return (
+      <div className="lg" >
+        <h1>Not logged 🚫</h1>
+        <Link to="/">
+          Home page
+        </Link>
+      </div>
+    );
   }
 };
 
