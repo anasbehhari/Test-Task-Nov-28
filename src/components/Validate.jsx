@@ -135,6 +135,7 @@ const Validate = () => {
           name="sectors"
           placeholder="Edit your sectors "
           error="*field required"
+          selected={selectedSectors}
         />
         <div className={"message " + edited}>Last {edited}</div>
         <div className="con">
